@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de notas</title>
+</head>
+<body>
+  <h1>Sistema acadêmico</h1>
+  <form name="myform" action="" method="get">
+    Matrícula:
+    <input type="text" name="nome_aluno"><br>
+    Data de Nascimento:
+    <input type="date" name="nasc_aluno"><br>
+    sexo: <br>
+    <input type="radio" name="sexo" value="masculino">Masculino<br>
+    <input type="radio" name="sexo" value="feminino">Feminino<br>
+    Nota1:
+    <input type="number" name="nota1" step="0.05"><br>
+    Nota2:
+    <input type="number" name="nota2" step="0.05"><br>
+    <input type="button" name="button" value="Calcular Média" onclick="resultado(this.form)">
+  </form>
+
+<span id="resultado"></span>
+
+  <script>
+    function calc_media(n1, n2){
+      let media = (n1 + n2) / 2;
+      return media;
+    }
+    function resultado(form) {
+      let media = calc_media(parseFloat(form.nota1.value), parseFloat(form.nota2.value));
+      if (media >= 7) {
+        //alert("Aprovado com média: " + media);
+        document.getElementById("resultado").innerHTML = "Aprovado com média: " + media;
+      } else {
+        //alert("Reprovado com média: " + media);
+        document.getElementById("resultado").innerHTML = "Reprovado com média: " + media;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>teste</title>
+</head>
+<body>
+  <h1>Sistema Acadêmico</h1>
+<p>Menu</p>
+
+<button type="button" onclick="funcao1('Advertência  JavaScript detectado!')">Clique aqui</button>
+<button type="button" onclick="funcao1('Outra mensagem!')">Clique aqui</button>
+<div id="aqui"></div>
+
+  <script>
+  
+    function funcao1(mensagem) {
+      //alert("Usando função!");
+      document.getElementById("aqui").textContent = mensagem;
+    }   
+  </script>
+
+</body>
+</html>

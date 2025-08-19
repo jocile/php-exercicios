@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Média de 3 Notas</title>
+  <style>
+    legend {
+      font-size: 12px;
+      color: red;
+      text-align: center
+    }
+
+    input {
+      margin: 10px;
+    }
+
+    input ::after {
+      content: "nota de 0 a 10";
+      font-size: 12px;
+      color: gray;
+    }
+
+    fieldset {
+      width: 250px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Média de 3 Notas</h1>
+  <form action="">
+    <fieldset>
+      <legend>Preencha com 3 notas</legend>
+      <label for="">Nota1</label>
+      <input id="nota1" type="number" required min="0" max="10" placeholder="7"><br>
+      <label for="">Nota2</label>
+      <input id="nota2" type="number" required min="0" max="10" placeholder="8"><br>
+      <label for="">Nota3</label>
+      <input id="nota3" type="number" required min="0" max="10" placeholder="9"><br>
+      <button type="button" onclick="calcularMedia()">Calcular</button>
+    </fieldset>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcularMedia() {
+      let nota1 = parseFloat(document.getElementById('nota1').value);
+      let nota2 = parseFloat(document.getElementById('nota2').value);
+      let nota3 = parseFloat(document.getElementById('nota3').value);
+      let media = (nota1 + nota2 + nota3) / 3;
+      let resultado = document.getElementById('resultado');
+      if (media < 7) {
+        resultado.innerHTML = "A média é: " + media + " - Reprovado";
+      } else {
+        resultado.innerHTML = "A média é: " + media + " - Aprovado";
+      }
+    }
+  </script>
+</body>
+
+</html>
