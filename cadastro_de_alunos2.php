@@ -20,13 +20,14 @@
     </select>
     <input type="reset" value="Limpar" name="limpar">
     <input type="submit" value="Enviar" name="enviar">
+    <button type="submit" name="salvar_arquivo">Salvar em arquivo</button>
   </form>
+  
 
   <?php
-  $aluno = ['Pietro Arcanjo', 'Fernanda', 'Karla', 'João', 'Lucas'];
+  $aluno = ['Pietro Arcanjo', 'Fernanda', 'Karla'];
   $curso = ['Informática', 'Programador', 'Designer'];
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $nome = $_POST['aluno'];
       $cursoSelecionado = $_POST['curso'];
 
@@ -34,26 +35,27 @@
         echo "O aluno $nome já está cadastrado no curso de $cursoSelecionado.";
       } else {
         $aluno[] = $nome; // Adiciona o novo aluno ao array
+        $curso[] = $cursoSelecionado; // Adiciona o curso selecionado ao array
         echo "O aluno $nome foi cadastrado com sucesso no curso de $cursoSelecionado.";
       }
     }
-
-  echo "<h2>Usando var_dump</h2>";
-  var_dump($aluno);
-  var_dump($curso);
-
-  echo "<h2>Usando print_r</h2>";
-  print_r($aluno);
-  print_r($curso);
-
-  echo "<h2>Usando foreach</h2>";
-  foreach ($aluno as $a) {
-    echo "Aluno: $a <br>";
-  }
-  foreach ($curso as $c) {
-    echo "Curso: $c <br>";
-  }
-
+    if (isset($_POST['salvar_arquivo'])) {
+      salvarEmArquivo();
+    }
+    function salvarEmArquivo() {
+      global $aluno, $curso;
+      $dados = "Nome,Curso\n";
+      for ($i = 0; $i < count($aluno); $i++) {
+        $dados .= "{$aluno[$i]},{$curso[$i]}\n";
+      }
+      $myfile = fopen("cadastro_alunos.csv", "a") or die("Erro ao abrir o arquivo!");
+      fwrite($myfile, $dados);
+      fclose($myfile);
+      echo "<br>Dados salvos em cadastro_alunos.csv";
+    }
+    if (isset($_POST['salvar_arquivo'])) {
+      salvarEmArquivo();
+    }
   ?>
 </body>
 
